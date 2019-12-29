@@ -32,8 +32,7 @@ then the program checks if the corresponding path(s) are valid. If the path(s)
 are not valid, an error is thrown and built_in returns -1. Otherwise, the
 built-in is executed correctly and built_in returns 0. This function is also
 responsible for handling the fg, bg, and jobs commands. It checks if any of
-the commands is present in the first element of the array of tokens (tokens[0]).
-If either fg or bg is present, then the job ID is parsed and the process ID is
+the commands is present. If either fg or bg is present, then the job ID is parsed and the process ID is
 found for both cases to be used to send the signal SIGCONT. If the function is
 moving a process into the foreground, built_in will ensure that terminal sends
 signals to those processes, reap any terminated processes with 'waitpid', and
