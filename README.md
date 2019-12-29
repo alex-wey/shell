@@ -9,7 +9,7 @@ the shell will initiate waiting for a user's input to be executed.
 Overview of design:
 -
 parse:
-parse is responsible for preprocessing all of the necessary components from the
+responsible for preprocessing all of the necessary components from the
 command line: tokens, input path, and output path. The standard input is
 tokenized using strtok with delimiters only pertaining to white space, tabs, and
 new lines, in which each token is stored in a temporary array. Then, in a while
@@ -24,7 +24,7 @@ remaining tokens are then stored in an array called 'tokens'. If parse runs
 without throwing any errors, it returns 0.
 
 built_in:
-built_in is responsible for handling any shell built-in commands. In a shell,
+responsible for handling any shell built-in commands. In a shell,
 a built-in command is only executed if it is at the beginning of the command
 line. Thus, the function checks if any of the commands (cd, ln, rm, or exit) is
 present in the first element of the array of tokens (tokens[0]). If it exits,
@@ -41,7 +41,7 @@ call reap_print. If jobs is present, then the function simply calls 'jobs' from
 jobs.c.
 
 redir:
-redir is responsible for opening the necessary files. If neither the input path
+responsible for opening the necessary files. If neither the input path
 or output path is present, then redir returns 0. If the input path is present,
 then the function closes the stdin, and opens the file corresponding to the
 input path. If an error occurs during this process, redir returns -1. If the
@@ -75,14 +75,14 @@ is in the foreground, so the function will reap any terminated process with
 If a process was suspended by a signal, then it will be added to the job list.
 
 reap_print:
-reap_print is responsible cleaning up the process table and printing the correct
+responsible cleaning up the process table and printing the correct
 messages for the macros pertaining to normal termination, signal termination,
 and signal stoppage. Corresponding job functions are called to clean and maintain
 the job list. An argument called 'job_type' is also used conditionally to print
 certain error messages depending on foreground or background processes.
 
 main:
-main is responsible for initializing the buffer, reading in the standard input
+responsible for initializing the buffer, reading in the standard input
 from terminal, and calling on the necessary functions. A while loop is set to
 run the shell indefinitely until the user exits or unless an error is thrown
 while reading in the standard input. The array of tokens, input path, output
