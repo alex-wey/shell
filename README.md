@@ -66,7 +66,7 @@ correctly, and then calls on execv with the arguments being 'program_name' and
 'argv'. If any error occurs during the execv process, the function exits.
 The function is also responsible for executing foreground and background
 processes differently. Only if the child process is in the foreground, then
-execute will ensures that terminal sends signals to that process. If the child
+execute will ensure that terminal sends signals to that process. If the child
 process is in the background (denoted by '&' in the command line) the function
 will execute the program and add it to the job list. Otherwise, the child process
 is in the foreground, so the function will reap any terminated process with
