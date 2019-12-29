@@ -95,7 +95,6 @@ the built-ins or programs.
 
 Other Functionality:
 -
-signal handling:
 Signals are handled in main and execute. In main, the response to the signals
 outlined in the PDF are set to be ignored in the shell to avoid having the shell
 exit. In execute, the response to the same set of signals are reset back to their
