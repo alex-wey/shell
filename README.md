@@ -8,9 +8,6 @@ the shell will initiate waiting for a user's input to be executed.
 
 Overview of design:
 -
-My program is structurally divided into five functions, which are all called
-upon accordingly in my main:
-
 parse:
 parse is responsible for preprocessing all of the necessary components from the
 command line: tokens, input path, and output path. The standard input is
