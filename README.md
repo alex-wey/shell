@@ -82,7 +82,7 @@ path, and sign (for indicating the presence of ">" or ">>") are all initialized
 in main. Also there is redirection error checking prior to any execution of
 the built-ins or programs.
 
-Other Functionality:
+Signalling:
 -
 Signals are handled in main and execute. In main, the response to the signals are set to be ignored in the shell to avoid having the shell
 exit. In execute, the response to the same set of signals are reset back to their
