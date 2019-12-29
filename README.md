@@ -11,9 +11,7 @@ Overview of design:
 parse:
 responsible for preprocessing all of the necessary components from the
 command line: tokens, input path, and output path. The standard input is
-tokenized using strtok with delimiters only pertaining to white space, tabs, and
-new lines, in which each token is stored in a temporary array. Then, in a while
-loop, each token is checked if any redirection operators are present. If they
+tokenized using strtok. Then, in a while loop, each token is checked if any redirection operators are present. If they
 are, then the function will store either the correct input or output path
 (depending on the redirection operator). A variable called 'sign' is also set to
 ">" if the ">" operator was present or ">>" if the ">>" operator was present.
@@ -24,19 +22,15 @@ remaining tokens are then stored in an array called 'tokens'. If parse runs
 without throwing any errors, it returns 0.
 
 built_in:
-responsible for handling any shell built-in commands. In a shell,
-a built-in command is only executed if it is at the beginning of the command
-line. Thus, the function checks if any of the commands (cd, ln, rm, or exit) is
+responsible for handling any shell built-in commands. The function checks if any of the commands (cd, ln, rm, or exit) is
 present in the first element of the array of tokens (tokens[0]). If it exits,
 then the program checks if the corresponding path(s) are valid. If the path(s)
 are not valid, an error is thrown and built_in returns -1. Otherwise, the
 built-in is executed correctly and built_in returns 0. This function is also
-responsible for handling the fg, bg, and jobs commands. It checks if any of
-the commands is present. If either fg or bg is present, then the job ID is parsed and the process ID is
-found for both cases to be used to send the signal SIGCONT. If the function is
+responsible for handling the fg, bg, and jobs commands. If "fg" or "bg" is present, then the job ID is parsed and the process ID is found for both cases to be used to send the signal SIGCONT. If the function is
 moving a process into the foreground, built_in will ensure that terminal sends
 signals to those processes, reap any terminated processes with 'waitpid', and
-call reap_print. If jobs is present, then the function simply calls 'jobs' from
+call reap_print. If "jobs" is present, then the function simply calls 'jobs' from
 jobs.c.
 
 redir:
@@ -54,8 +48,7 @@ can be appended. If an error occurs during either process, redir returns -1.
 execute:
 execute is responsible for executing any programs outlined in the command line.
 In order to provide the necessary arguments to execv, execute preprocesses the
-file name and the array of arguments. The file name is parsed from the first
-element in the array of tokens using a "/" delimiter. These tokens are stored
+file name and the array of arguments. These tokens are stored
 in an array called 'program_tokens' and the last element in that array is stored
 in a variable called 'program_name' (which is the file name). The function then
 stores program_name in the first element of an array called 'argv'. It then
